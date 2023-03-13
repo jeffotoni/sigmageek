@@ -3,6 +3,8 @@
 Aqui temos somente um arquivo com pix.txt com somente 98304 casas decimais da expansão do PI, para seguir, precisamos usar os arquivos disponibilizados pelo google com PI para que possamos rodar nosso algoritimo.
 O site do google com os arquivos [estão aqui](https://storage.googleapis.com/pi100t/index.html) e a página com todo explicativo de como eles calcularam 31.4 trilhões de dígitos [basta clicar aqui](https://pi.delivery/#introductionindex)
 
+Um programa para ler o arquivo ycd é o [cruncher - linux](http://www.numberworld.org/y-cruncher/#Download), com ele você irá conseguir descompactar, visualizar etc..
+
 #### Desafio SigmaGeek com 4 fases.
 
 Fase 1: Qual é o primeiro primo palíndromo de 9 dígitos encontrado na expansão decimal de Pi? 
