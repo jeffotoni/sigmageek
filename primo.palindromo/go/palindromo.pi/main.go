@@ -41,22 +41,43 @@ func main() {
 	defer file.Close()
 
 	maxLineSize := 1000000
+	var maxPrimePalindrome int64
 	scanner := bufio.NewScanner(file)
 	scanner.Buffer(make([]byte, maxLineSize), maxLineSize)
-
+	var start bool
 	for scanner.Scan() {
 		line := scanner.Text()
 		for i := 0; i <= len(line)-digito; i++ {
 			n, err := strconv.ParseInt(line[i:i+digito], 10, 64)
 			if err == nil && isPalindrome(line[i:i+digito]) && isPrime(n) {
-				fmt.Printf("Primeiro primo palindromo encontrado: %d\n", n)
-				return
+				if n > maxPrimePalindrome {
+					maxPrimePalindrome = n
+				}
+				if !start {
+					start = true
+					fmt.Printf("Primeiro primo palindromo encontrado: %d\n", n)
+				}
+				next := findNextPrimePalindrome(n)
+				fmt.Printf("Proximo primo palindromo encontrado: %d\n", next)
+				break
 			}
 		}
+	}
+	if maxPrimePalindrome > 0 {
+		fmt.Printf("Maior número primo palíndromo encontrado: %d\n", maxPrimePalindrome)
 	}
 
 	if err := scanner.Err(); err != nil {
 		fmt.Println(err)
+		return
+	}
+}
+
+func findNextPrimePalindrome(current int64) int64 {
+	for i := current + 1; ; i++ {
+		if isPalindrome(strconv.FormatInt(i, 10)) && isPrime(i) {
+			return i
+		}
 	}
 }
 

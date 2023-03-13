@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 bool isPalindrome(const char *str, size_t length)
 {
@@ -35,6 +36,20 @@ bool isPrime(int n)
   return true;
 }
 
+int64_t findNextPrimePalindrome(int64_t current)
+{
+  for (int64_t i = current + 1;; i++)
+  {
+    char str[100];
+    sprintf(str, "%ld", i);
+    int length = strlen(str);
+    if (isPalindrome(str, length) && isPrime(i))
+    {
+      return i;
+    }
+  }
+}
+
 int main(int argc, char *argv[])
 {
   if (argc != 2)
@@ -51,6 +66,8 @@ int main(int argc, char *argv[])
     return 1;
   }
 
+  bool start = false;
+  int maxPrimePalindrome = 0;
   char line[1000000];
   int buffer_size = 1000000;
   char *buffer = (char *)malloc(buffer_size * sizeof(char));
@@ -66,11 +83,26 @@ int main(int argc, char *argv[])
       int n = atoi(buffer);
       if (isPalindrome(line + i, digito) && isPrime(n))
       {
-        printf("Primeiro primo palindromo encontrado na posição %d: %d\n", i, n);
+        if (n > maxPrimePalindrome)
+        {
+          maxPrimePalindrome = n;
+        }
+        if (!start)
+        {
+          start = true;
+          printf("Primeiro primo palindromo encontrado na posição %d: %d\n", i, n);
+        }
+
+        int next = findNextPrimePalindrome(n);
+				printf("Proximo primo palindromo encontrado: %d\n", next);
         break;
       }
     }
   }
+
+  if (maxPrimePalindrome > 0) {
+		printf("Maior número primo palíndromo encontrado: %d\n", maxPrimePalindrome);
+	}
 
   fclose(fp);
   return 0;
