@@ -1,6 +1,6 @@
 # Primo e Palindromo
 
-Foi criado uma versão Go e C de como encontrar palíndromos e primos na expansão decimal do pi.
+Foi criado uma versão Go, C e fortran eu tentei mas conheço pouco ainda só uma tentativa de como encontrar palíndromos e primos na expansão decimal do pi.
 
 Para isto precisamos pegar esta expansão decimal e o site que está nada menos e nada mais que 31,4 trilhões de dígitos decimais da expansão decimal de pi é neste site [pi delivery](https://pi.delivery/).
 
